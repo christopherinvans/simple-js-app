@@ -6,16 +6,12 @@ let pokemonRepository = (function () {
     ];
 
     function add(pokemon) {
-        if (typeof pokemon === 'object' && 'name' in pokemon) {
-            pokemonList.push(pokemon);
-        } else {
-            console.log('Pokemon invalid');
-        }
-    };
+        pokemonList.push(pokemon);
+    }
 
     function getAll() {
         return pokemonList;
-    };
+    }
 }) ();
 
 console.log(pokemonRepository.getAll());
