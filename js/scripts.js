@@ -5,13 +5,16 @@ let pokemonRepository = (function () {
     {name: 'Scyther', type: ['Bug', 'Flying'], height: 1.5},
     ];
 
-    return {
-        add: function(pokemon) {
+    function add(pokemon) {
+        if (typeof pokemon === 'object' && 'name' in pokemon) {
             pokemonList.push(pokemon);
-        },
-        getAll: function(pokemon) {
-            return pokemonList;
+        } else {
+            console.log('Pokemon invalid');
         }
+    };
+
+    function getAll() {
+        return pokemonList;
     };
 }) ();
 
@@ -19,6 +22,6 @@ console.log(pokemonRepository.getAll());
 pokemonRepository.add({ name: 'Pikachu'});
 console.log(pokemonRepository.getAll());
 
-//pokemonList.forEach(function (pokemon) {
-   // document.write(`${pokemon.name} Height: ${pokemon.height} Type: ${pokemon.type} <br>`)
-//})
+pokemonRepository.forEach(function (pokemon) {
+    document.write(`${pokemon.name} Height: ${pokemon.height} Type: ${pokemon.type} <br>`)
+})
