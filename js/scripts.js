@@ -4,8 +4,6 @@ let pokemonList = [
     {name: 'Scyther', type: ['Bug', 'Flying'], height: 1.5},
 ];
 
-function myLoopFunction(pokemon) {
-    console.log(' Name: ' + pokemon.name + ' Type: ' + pokemonList.type + ' Height: ' + pokemon.height);
-};
-
-pokemonList.forEach(myLoopFunction);
+pokemonList.forEach(function (pokemon) {
+    document.write(`${pokemon.name} Height: ${pokemon.height} Type: ${pokemon.type} <br>`)
+})
