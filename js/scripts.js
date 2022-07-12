@@ -24,5 +24,5 @@ pokemonRepository.add({ name: 'Charizard', type: ['Fire'], height: 1.7});
 console.log(pokemonRepository.getAll());
 
 pokemonRepository.getAll().forEach(function(pokemon){
-    document.write(<p>`Name: ${pokemon.name} Type: ${pokemon.type} Height (m): ${pokemon.height}`</p>);
+    document.write(`<p>Name: ${pokemon.name}<br>Type: ${pokemon.type}<br>Height (m): ${pokemon.height}</p>`);
 });
