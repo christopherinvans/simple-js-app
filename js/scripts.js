@@ -24,9 +24,11 @@ pokemonRepository.add({ name: 'Charizard', type: ['Fire'], height: 1.7});
 console.log(pokemonRepository.getAll());
 
 pokemonRepository.getAll().forEach(function(pokemon){
-    let element = document.querySelector('.pokemon-list')
-    let listItem = document.createElement('li')
-    let button = document.createElement('button')
+    let pokemonDisplay = document.querySelector('.pokemon-list');
+    let listItem = document.createElement('li');
+    let button = document.createElement('button');
     button.innerHTML = pokemon.name;
-    button.classList.add('modal')
+    button.classList.add('modal');
+    listItem.appendChild(button);
+    pokemonDisplay.appendChild(listItem);
 });
