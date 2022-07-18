@@ -19,6 +19,8 @@ let pokemonRepository = (function () {
     };
 }) ();
 
+const modalContainer = document.querySelector('.modal');
+
 console.log(pokemonRepository.getAll());
 pokemonRepository.add({ name: 'Charizard', type: ['Fire'], height: 1.7});
 console.log(pokemonRepository.getAll());
