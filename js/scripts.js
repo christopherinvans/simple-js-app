@@ -13,9 +13,29 @@ let pokemonRepository = (function () {
         return pokemonList;
     }
 
+    function addListItem(pokemon){
+        let pokemonDisplay = document.querySelector('.pokemon-list');
+        let listItem = document.createElement('li');
+        let button = document.createElement('button');
+        button.innerHTML = pokemon.name;
+        button.classList.add('button-class');
+        listItem.appendChild(button);
+        pokemonDisplay.appendChild(listItem);
+        button.addEventListener('click', function (event) {
+            let target = event.target;
+            console.log(pokemon);
+        })
+    }
+
+    function showDetails(pokemon){
+        console.log(pokemon);
+    }
+
     return {
         add: add,
-        getAll: getAll
+        getAll: getAll,
+        addListItem: addListItem,
+        showDetails: showDetails
     };
 }) ();
 
@@ -26,11 +46,5 @@ pokemonRepository.add({ name: 'Charizard', type: ['Fire'], height: 1.7});
 console.log(pokemonRepository.getAll());
 
 pokemonRepository.getAll().forEach(function(pokemon){
-    let pokemonDisplay = document.querySelector('.pokemon-list');
-    let listItem = document.createElement('li');
-    let button = document.createElement('button');
-    button.innerHTML = pokemon.name;
-    button.classList.add('modal');
-    listItem.appendChild(button);
-    pokemonDisplay.appendChild(listItem);
+   pokemonRepository.addListItem(pokemon);
 });
