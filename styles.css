@@ -34,3 +34,12 @@ h3 {
     font-weight: 200;
     background-color: aquamarine;
 }
+
+#modal-container {
+    display: none;
+}
+
+#modal-container.is-visible {
+    /* CSS for modal container - choose your own stylings */
+    display: block;
+}
