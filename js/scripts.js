@@ -97,9 +97,16 @@ let pokemonRepository = (function () {
         showModal('Modal title', 'This is the modal content!');
     });
 
+    let dialogPromiseReject; //This can be set later
+
     function hideModal() {
         let modalContainer = document.querySelector('#modal-container');
         modalContainer.classList.remove('is-visible');
+
+        if (dialogPromiseReject) {
+            dialogPromiseReject();
+            dialogPromiseReject = null;
+        }
     }
 
     function showDialog(title, text) {
@@ -118,6 +125,17 @@ let pokemonRepository = (function () {
         modal.appendChild(cancelButton);
 
         confirmButton.focus();
+
+        return new Promise((resolve,reject) => {
+            cancelButton.addEventListener('click', hideModal);
+            confirmButton.addEventListener('click', () =>
+            {
+                dialogPromiseReject = null; //RESET THIS
+                hideModal();
+                resolve();
+            });
+            dialogPromiseReject = reject; //THIS CAN BE USED TO REJECT OTHER FUNCTIONS
+        });
     }
 
     (function(){
