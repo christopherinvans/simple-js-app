@@ -102,6 +102,24 @@ let pokemonRepository = (function () {
         modalContainer.classList.remove('is-visible');
     }
 
+    function showDialog(title, text) {
+        showModal(title, text);
+        let modalContainer = document.querySelector('#modal-container');
+        let modal = modalContainer.querySelector('.modal');
+        let confirmButton = document.createElement('button');
+        confirmButton.classList.add('modal-confirm');
+        confirmButton.innerText = 'Confirm';
+
+        let cancelButton = document.createElement('.button');
+        cancelButton.classList.add('modal-cancel');
+        cancelButton.innerText = 'Cancel';
+
+        modal.appendChild(confirmButton);
+        modal.appendChild(cancelButton);
+
+        confirmButton.focus();
+    }
+
     (function(){
         let form = document.querySelector('#register-form');
         let emailInput = document.querySelector('#email');
@@ -187,6 +205,14 @@ let pokemonRepository = (function () {
         }
     });
 
+    document.querySelector('#show-dialog').addEventListener('click', () => {
+        showDialog('Confirm action', 'Are ya sure?').then(function() {
+            alert('confirmed!');
+        }, () => {
+            alert('not confirmed');
+        });
+    });
+
     return {
         add: add,
         getAll: getAll,
@@ -195,7 +221,8 @@ let pokemonRepository = (function () {
         loadList: loadList,
         loadDetails: loadDetails,
         showModal: showModal,
-        hideModal: hideModal
+        hideModal: hideModal,
+        showDialog: showDialog,
     };
 }) ();
 
