@@ -138,11 +138,11 @@ let pokemonRepository = (function () {
         });
     }
 
-    (function(){
+    (() => {
         let form = document.querySelector('#register-form');
         let emailInput = document.querySelector('#email');
         let passwordInput = document.querySelector('#password');
-    
+
 
         function validateEmail() {
             let value = emailInput.value;
@@ -181,11 +181,12 @@ let pokemonRepository = (function () {
         emailInput.addEventListener('input', validateEmail);
         passwordInput.addEventListener('input', validatePassword);
 
-        form.addEventListener('submit', (e) => {e.preventDefault();
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
             if (validateForm()) {
                 alert('Success!');
             }
-        })
+        });
 
         function showErrorMessage(input, message) {
             let container = input.parentElement;
@@ -206,7 +207,7 @@ let pokemonRepository = (function () {
             validatePassword: validatePassword,
             validateForm: validateForm,
             showErrorMessage: showErrorMessage
-        }
+        };
     })();
 
     window.addEventListener('keydown', (e) => {
@@ -224,7 +225,7 @@ let pokemonRepository = (function () {
     });
 
     document.querySelector('#show-dialog').addEventListener('click', () => {
-        showDialog('Confirm action', 'Are ya sure?').then(function() {
+        showDialog('Confirm action', 'Are you sure?').then(function() {
             alert('confirmed!');
         }, () => {
             alert('not confirmed');
