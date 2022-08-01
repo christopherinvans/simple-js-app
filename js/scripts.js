@@ -60,11 +60,6 @@ let pokemonRepository = (function () {
         })
     }
 
-    function showModal() {
-        let modalContainer = document.querySelector('#modal-container');
-        modalContainer.classList.add('is-visible');
-    }
-
     function showModal(title, text) {
         let modalContainer = document.querySelector('#modal-container');
         modalContainer.innerHTML = "";
@@ -90,7 +85,7 @@ let pokemonRepository = (function () {
     }
 
     document.querySelector('#show-modal').addEventListener('click', () => {
-        showModal('Modal title', 'This is the modal content!');
+        showModal();
     });
 
     let dialogPromiseReject; //This can be set later
