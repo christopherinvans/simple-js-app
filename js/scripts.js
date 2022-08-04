@@ -88,8 +88,6 @@ let pokemonRepository = (function () {
         showModal();
     });
 
-    let dialogPromiseReject; //This can be set later
-
     function hideModal() {
         let modalContainer = document.querySelector('#modal-container');
         modalContainer.classList.remove('is-visible');
@@ -102,13 +100,13 @@ let pokemonRepository = (function () {
 
     function showDialog(title, text) {
         showModal(title, text);
-        let modalContainer = document.querySelector('#modal-container');
         let modal = modalContainer.querySelector('.modal');
+
         let confirmButton = document.createElement('button');
         confirmButton.classList.add('modal-confirm');
         confirmButton.innerText = 'Confirm';
 
-        let cancelButton = document.createElement('.button');
+        let cancelButton = document.createElement('button');
         cancelButton.classList.add('modal-cancel');
         cancelButton.innerText = 'Cancel';
 
@@ -118,18 +116,44 @@ let pokemonRepository = (function () {
         confirmButton.focus();
 
         return new Promise((resolve,reject) => {
-            cancelButton.addEventListener('click', hideModal);
+            cancelButton.addEventListener('click', () => 
+            {
+                hideModal();
+                reject();
+        });
             confirmButton.addEventListener('click', () =>
             {
-                dialogPromiseReject = null; //RESET THIS
+                dialogPromiseReject = reject;
                 hideModal();
                 resolve();
             });
-            dialogPromiseReject = reject; //THIS CAN BE USED TO REJECT OTHER FUNCTIONS
+            dialogPromiseReject = reject;
         });
     }
 
-    (() => {
+    document.querySelector('#show-dialog').addEventListener('click', () => {
+        showDialog('Confirm action', 'Are you sure?').then(function() {
+            alert('confirmed!');
+        }, () => {
+            alert('not confirmed');
+        });
+    });
+
+    window.addEventListener('keydown', (e) => {
+        let modalContainer = document.querySelector('#modal-container');
+        if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+            hideModal();
+        }
+    });
+    let modalContainer = document.querySelector('#modal-container');
+    modalContainer.addEventListener('click', (e) => {
+        let target = e.target;
+        if (target === modalContainer) {
+            hideModal();
+        }
+    });
+
+    (function (){
         let form = document.querySelector('#register-form');
         let emailInput = document.querySelector('#email');
         let passwordInput = document.querySelector('#password');
@@ -200,28 +224,6 @@ let pokemonRepository = (function () {
             showErrorMessage: showErrorMessage
         };
     })();
-
-    window.addEventListener('keydown', (e) => {
-        let modalContainer = document.querySelector('#modal-container');
-        if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-            hideModal();
-        }
-    });
-
-    modalContainer.addEventListener('click', (e) => {
-        let target = e.target;
-        if (target === modalContainer) {
-            hideModal();
-        }
-    });
-
-    document.querySelector('#show-dialog').addEventListener('click', () => {
-        showDialog('Confirm action', 'Are you sure?').then(function() {
-            alert('confirmed!');
-        }, () => {
-            alert('not confirmed');
-        });
-    });
 
     return {
         add: add,
