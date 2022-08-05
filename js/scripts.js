@@ -3,6 +3,8 @@ let pokemonRepository = (function () {
 
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
+    let dialogPromiseReject;
+
     function add(pokemon) {
         pokemonList.push(pokemon);
     }
@@ -84,14 +86,8 @@ let pokemonRepository = (function () {
         modalContainer.classList.add('is-visible');
     }
 
-    document.querySelector('#show-modal').addEventListener('click', () => {
-        showModal();
-    });
-
     function hideModal() {
-        let modalContainer = document.querySelector('#modal-container');
         modalContainer.classList.remove('is-visible');
-
         if (dialogPromiseReject) {
             dialogPromiseReject();
             dialogPromiseReject = null;
@@ -116,20 +112,22 @@ let pokemonRepository = (function () {
         confirmButton.focus();
 
         return new Promise((resolve,reject) => {
-            cancelButton.addEventListener('click', () => 
-            {
-                hideModal();
-                reject();
-        });
+            cancelButton.addEventListener('click', hideModal);
             confirmButton.addEventListener('click', () =>
-            {
-                dialogPromiseReject = reject;
+        {
+                dialogPromiseReject = null;
                 hideModal();
                 resolve();
             });
             dialogPromiseReject = reject;
         });
+
+
     }
+
+    document.querySelector('#show-modal').addEventListener('click', () => {
+        showModal('Modal Title','This here is a fine lookin modal, yessir!');
+    });
 
     document.querySelector('#show-dialog').addEventListener('click', () => {
         showDialog('Confirm action', 'Are you sure?').then(function() {
@@ -140,12 +138,10 @@ let pokemonRepository = (function () {
     });
 
     window.addEventListener('keydown', (e) => {
-        let modalContainer = document.querySelector('#modal-container');
         if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
             hideModal();
         }
     });
-    let modalContainer = document.querySelector('#modal-container');
     modalContainer.addEventListener('click', (e) => {
         let target = e.target;
         if (target === modalContainer) {
