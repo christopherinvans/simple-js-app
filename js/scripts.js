@@ -158,6 +158,19 @@ let pokemonRepository = (function () {
         let emailInput = document.querySelector('#email');
         let passwordInput = document.querySelector('#password');
 
+        function showErrorMessage(input, message) {
+            let container = input.parentElement;
+            let error = container.querySelector('.error-message');
+            if (error) {
+                container.removeChild(error);
+            }
+            if (message) {
+                let error = document.createElement('div');
+                error.classList.add('.error-message');
+                error.innerText = message;
+                container.appendChild(error);
+            }
+        }
 
         function validateEmail() {
             let value = emailInput.value;
@@ -169,6 +182,11 @@ let pokemonRepository = (function () {
                 showErrorMessage(emailInput, 'You must enter a valid email address.');
                 return false;
             }
+            if (value.indexOf('.') === -1) {
+                    showErrorMessage(emailInput, 'You must enter a valid e-mail address.');
+                    return false;
+            }    
+            
             showErrorMessage(emailInput, null);
             return true;
         }
@@ -193,9 +211,6 @@ let pokemonRepository = (function () {
             return isValidEmail && isValidPassword;
         }
 
-        emailInput.addEventListener('input', validateEmail);
-        passwordInput.addEventListener('input', validatePassword);
-
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             if (validateForm()) {
@@ -203,19 +218,8 @@ let pokemonRepository = (function () {
             }
         });
 
-        function showErrorMessage(input, message) {
-            let container = input.parentElement;
-            let error = container.querySelector('.error-message');
-            if (error) {
-                container.removeChild(error);
-            }
-            if (message) {
-                let error = document.createElement('div');
-                error.classList.add('.error-message');
-                error.innerText = message;
-                container.appendChild(error);
-            }
-        }
+        emailInput.addEventListener('input', validateEmail);
+        passwordInput.addEventListener('input', validatePassword);
 
         return {
             validateEmail: validateEmail,
