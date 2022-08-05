@@ -19,14 +19,11 @@ let pokemonRepository = (function () {
         let pokemonDisplay = document.querySelector('.pokemon-list');
         let listItem = document.createElement('li');
         let button = document.createElement('button');
-        button.innerHTML = pokemon.name;
+        button.innerHTML = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
         button.classList.add('button-class');
         listItem.appendChild(button);
         pokemonDisplay.appendChild(listItem);
-        button.addEventListener('click', function (event) {
-            let target = event.target;
-            console.log(pokemon);
-        })
+        button.addEventListener('click', function(){showDetails(pokemon);}); 
     }
 
     function showDetails(pokemon){
@@ -65,7 +62,7 @@ let pokemonRepository = (function () {
         })
     }
 
-    function showModal(title, text) {
+    function showModal(pokemon) {
         modalContainer.innerHTML = "";
         let modal = document.createElement('div');
         modal.classList.add('modal');
@@ -76,10 +73,10 @@ let pokemonRepository = (function () {
         closeButtonElement.addEventListener('click', hideModal);
 
         let titleElement = document.createElement('h1');
-        titleElement.innerText = titlepokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+        titleElement.innerText = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
 
         let contentElement = document.createElement('p');
-        contentElement.innerText = `Height: ${pokemon.height}`
+        contentElement.innerText = `Height: ${pokemon.height}`;
 
         let imgElement = document.createElement('img');
         imgElement.classList.add('img-element');
@@ -87,6 +84,7 @@ let pokemonRepository = (function () {
 
         modal.appendChild(closeButtonElement);
         modal.appendChild(titleElement);
+        modal.appendChild(imgElement);
         modal.appendChild(contentElement);
         modalContainer.appendChild(modal);
         modalContainer.classList.add('is-visible');
@@ -94,10 +92,6 @@ let pokemonRepository = (function () {
 
     function hideModal() {
         modalContainer.classList.remove('is-visible');
-        if (dialogPromiseReject) {
-            dialogPromiseReject();
-            dialogPromiseReject = null;
-        }
     }
 
     function showDialog(title, text) {
