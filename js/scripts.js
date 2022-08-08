@@ -87,11 +87,13 @@ let pokemonRepository = (function () {
         modal.appendChild(imgElement);
         modal.appendChild(contentElement);
         modalContainer.appendChild(modal);
+        modalContainer.classList.remove('hidden')
         modalContainer.classList.add('is-visible');
     }
 
     function hideModal() {
         modalContainer.classList.remove('is-visible');
+        modalContainer.classList.add('hidden');
     }
 
     function showDialog(title, text) {
