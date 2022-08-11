@@ -20,7 +20,7 @@ let pokemonRepository = (function () {
         let listItem = document.createElement('li');
         let button = document.createElement('button');
         button.innerHTML = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
-        button.classList.add('button-class');
+        button.classList.add('group-list-item', 'btn', 'btn-primary');
         listItem.appendChild(button);
         pokemonDisplay.appendChild(listItem);
         button.addEventListener('click', function(){showDetails(pokemon);}); 
