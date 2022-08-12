@@ -8,124 +8,41 @@ Secondary Color:
 */
 
 body {
-    font-family: 'Poppins', sans-serif;
     font-weight: 400;
     font-size: 16px;
-    line-height: 1.6;
     background-color: khaki;
-}
-
-h1 {
+    justify-content: center;
+    display: block;
     text-align: center;
-    font-size: 28px;
-    font-weight: 700;
-    padding-top: 30;
-    padding-bottom: 30;
-}
-
-h2 {
-    font-size: 24px;
-    font-weight: 700;
-}
-
-h3 {
-    font-size: 20px;
-    font-weight: 700;
+    align-content: center;
 }
 
 .button-class {
     box-shadow: none;
-    width:max-content;
+    border: #000000, 60px;
+    border-color: #000000;
+    width: 135px;
+    margin: 4px;
     align-content: stretch;
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 500;
     background-color: lightblue;
+    cursor: pointer:
+    padding: 10px;
+    display: inline-block;
 }
 
 p {
     text-align: center;
 }
 
-#modal-container {
-    position: fixed;
-    padding: 20px;
-    box-sizing: border-box;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    /* to show it above other content */
-    z-index: 999;
-    /* to allow scrolling if the screen is not high enough*/
-    overflow: auto;
-    display: none;
-    text-align: center;
+.modal img {
+  height: 300px;
+  width: auto;
 }
 
-#modal-container.is-visible {
-    display: block;
-  }
-  
-#modal-container.hidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: auto;
-    margin: 0;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-    white-space: nowrap;
-  }
-
-.modal {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    background: #fff;
-    padding: 15px;
-    width: 100%;
-    max-width: 700px;
-    text-align: left;
+h3  {
+  font-weight: 400;
+  font-size: 20px;
+  display: block;
 }
-  
-  .modal h1 {
-    font-weight: bold;
-    margin-top: 0;
-  }
-  
-  .modal p {
-    text-align: center;
-    margin-bottom: 0;
-  }
-  
-  .input-wrapper {
-    margin-bottom: 10px;
-  }
-  
-  label {
-    display: inline-block;
-    min-width: 75px;
-  }
-  
-  .error-message {
-    color: red;
-    font-size: 0.8em;
-  }
-
-  .img-element {
-    height: 100;
-    width: auto;
-  }
-
-  #register-form {
-    align-content: center;
-    border-width: 5px;
-    border-color: black;
-    background-color: lightgreen;
-  }
