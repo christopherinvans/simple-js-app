@@ -12,7 +12,6 @@ body {
     font-size: 16px;
     background-color: khaki;
     justify-content: center;
-    display: block;
     text-align: center;
     align-content: center;
 }
@@ -29,7 +28,11 @@ body {
     background-color: lightblue;
     cursor: pointer:
     padding: 10px;
-    display: inline-block;
+    display: block;
+}
+
+.pokemon-list {
+  display: inline-block;
 }
 
 p {
@@ -45,4 +48,12 @@ h3  {
   font-weight: 400;
   font-size: 20px;
   display: block;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li  {
+  display: inline-block;
 }
