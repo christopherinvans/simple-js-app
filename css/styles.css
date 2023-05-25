@@ -19,6 +19,7 @@ body {
 .button-class {
     box-shadow: none;
     border: 1px solid black;
+    border-radius: 5px;
     width: 135px;
     margin: 4px;
     font-size: 16px;
@@ -58,4 +59,6 @@ li  {
 
 .navbar {
   border: 2px solid black;
+  border-radius: 5px;
+  padding: 20px;
 }
