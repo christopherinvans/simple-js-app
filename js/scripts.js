@@ -12,6 +12,7 @@ let pokemonRepository = (function () {
     function getAll() {
         return pokemonList;
     }
+    
 
     function addListItem(pokemon){
         let pokemonList = document.querySelector('.pokemon-list');
@@ -125,9 +126,25 @@ let pokemonRepository = (function () {
             });
             dialogPromiseReject = reject;
         });
-
-
     }
+
+    function search() {
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("myUL");
+        li = ul.querySelectorAll(".card");
+        for (i = 0; i < li.length; i++) {
+          a = li[i].querySelector(".card-body").querySelector(".card-title");
+          console.log(a.innerText);
+          txtValue = a.textContent || a.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+          } else {
+            li[i].style.display = "none";
+          }
+        }
+      }
 
     return {
         add: add,
@@ -139,6 +156,7 @@ let pokemonRepository = (function () {
         showModal: showModal,
         hideModal: hideModal,
         showDialog: showDialog,
+        search: search,
     };
 })();
 
