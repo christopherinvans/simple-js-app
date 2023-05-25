@@ -128,23 +128,27 @@ let pokemonRepository = (function () {
         });
     }
 
-    function search() {
-        var input, filter, ul, li, a, i, txtValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        ul = document.getElementById("myUL");
-        li = ul.querySelectorAll(".card");
-        for (i = 0; i < li.length; i++) {
-          a = li[i].querySelector(".card-body").querySelector(".card-title");
-          console.log(a.innerText);
-          txtValue = a.textContent || a.innerText;
-          if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-          } else {
-            li[i].style.display = "none";
-          }
+    let searchForm = document.querySelector(`.form-inline`);
+
+  function getValue() {
+    let searchValue = $('#searchInput').val().toLowerCase();
+    let submitButton = document.querySelector('#submit-button');
+    if (searchValue === '') {
+      alert(`Please type a Pokemon name`);
+    } else {
+      getAll().filter((value) => {
+        if (value.name === searchValue) {
+          submitButton.setAttribute('data-toggle', 'modal');
+          submitButton.setAttribute('data-target', '#pokemon-modal');
+          showDetailsModal(value);
         }
-      }
+      });
+    }
+  }
+  searchForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    getValue();
+  });
 
     return {
         add: add,
@@ -156,7 +160,6 @@ let pokemonRepository = (function () {
         showModal: showModal,
         hideModal: hideModal,
         showDialog: showDialog,
-        search: search,
     };
 })();
 
