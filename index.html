@@ -15,16 +15,10 @@
       <div class="row">
         <div class="col">
         </div>
-          <form>
-            <input 
-              class="form-control col-lg-12" 
-              id="poke-search" 
-              type="text" 
-              onkeyup="search()"
-              placeholder="Search the Pokédex!" 
-              aria-label="Search"
-            />
-          </form>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" disabled>
+          <button class="btn btn-outline-primary" type="submit" disabled>Search</button>
+        </form>
         </div>
     </nav>
   </header>
