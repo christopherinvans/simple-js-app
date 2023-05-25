@@ -128,28 +128,6 @@ let pokemonRepository = (function () {
         });
     }
 
-    let searchForm = document.querySelector(`.form-inline`);
-
-  function getValue() {
-    let searchValue = $('#searchInput').val().toLowerCase();
-    let submitButton = document.querySelector('#submit-button');
-    if (searchValue === '') {
-      alert(`Please type a Pokemon name`);
-    } else {
-      getAll().filter((value) => {
-        if (value.name === searchValue) {
-          submitButton.setAttribute('data-toggle', 'modal');
-          submitButton.setAttribute('data-target', '#pokemon-modal');
-          showDetailsModal(value);
-        }
-      });
-    }
-  }
-  searchForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    getValue();
-  });
-
     return {
         add: add,
         getAll: getAll,
